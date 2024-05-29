@@ -107,6 +107,31 @@ public class Main {
 		users.stream().filter(user -> user.getAge() < 18).map(user -> user.getAge()).forEach(age -> System.out.println(age));
 
 
+		// **************************************************** STREAMS - REDUCE *******************************************************
+		System.out.println("**************************************************** STREAMS - REDUCE *******************************************************");
+		int totale = users.stream() // <-- Siccome il Reduce è un metodo terminatore di stream, allora non otterrò come prima uno Stream ma in questo caso un numero intero
+				.filter(user -> user.getAge() < 18)
+				.map(user -> user.getAge())
+				.reduce(0, (partialSum, currentNumber) -> partialSum + currentNumber);
+
+		System.out.println("La somma delle età dei minorenni è: " + totale);
+
+		// ************************************************* OTTENERE UNA NUOVA LISTA DA UNO STREAM *********************************
+		List<User> utentiMinorenni = users.stream().filter(user -> user.getAge() < 18).toList(); // .toList() termina lo Stream fornendoci una nuova lista
+		System.out.println(utentiMinorenni);
+		// Esso è un'alternativa più compatta e pratica al .collect(Collectors.toList())
+		/*List<User> utentiMinorenni = users.stream().filter(user -> user.getAge() < 18).collect(Collectors.toList());*/
+
+		List<Integer> listaEtàMinorenni = users.stream().filter(user -> user.getAge() < 18).map(user -> user.getAge()).toList();
+		System.out.println(listaEtàMinorenni);
+
+		List<String> listaNomiMinorenni = users.stream()
+				.filter(user -> user.getAge() < 18)
+				.map(user -> user.getFirstName() + " " + user.getLastName())
+				.toList();
+		
+		System.out.println(listaNomiMinorenni);
+
 	}
 }
 

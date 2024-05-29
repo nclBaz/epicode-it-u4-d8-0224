@@ -1,6 +1,8 @@
 import entities.User;
 import functional_interfaces.StringModifier;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -148,7 +150,29 @@ public class Main {
 			System.out.println("Non ce ne sono");
 		}
 
+		// *********************************************************** DATE *************************************************************
+		LocalDate today = LocalDate.now();
+		System.out.println(today);
 
+		LocalDate tomorrow = today.plusDays(1);
+		System.out.println(tomorrow);
+
+		LocalDate yesterday = today.minusDays(1);
+		System.out.println(yesterday);
+
+		LocalDate nextYear = today.plusYears(1);
+		System.out.println(nextYear);
+
+		LocalDateTime orario = LocalDateTime.now();
+		System.out.println(orario);
+
+		System.out.println(yesterday.isBefore(tomorrow));
+
+		LocalDate date = LocalDate.parse("2024-04-01");
+		System.out.println(date);
+
+	/*	Date t = new Date(); // <-- LocalDate è un'alternativa più pratica a Date
+		System.out.println(t);*/
 	}
 }
 

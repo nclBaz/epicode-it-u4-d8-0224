@@ -129,8 +129,25 @@ public class Main {
 				.filter(user -> user.getAge() < 18)
 				.map(user -> user.getFirstName() + " " + user.getLastName())
 				.toList();
-		
+
 		System.out.println(listaNomiMinorenni);
+
+		// **************************************************** STREAMS - ALLMATCH & ANYMATCH *******************************************************
+		// .some() e .every() di JavaScript corrispondono a .anyMatch() e .allMatch() di Java
+		// Questi metodi ci consentono di verificare se almeno un (some, anyMatch) elemento della lista oppure tutti (every, allMatch) passano una certa condizione
+		System.out.println("**************************************************** STREAMS - ALLMATCH & ANYMATCH *******************************************************");
+		if (users.stream().allMatch(user -> user.getAge() >= 18)) {  // allMatch e anyMatch sono metodi terminanti lo stream
+			System.out.println("Tutti gli utenti sono maggiorenni");
+		} else {
+			System.out.println("C'è qualche minorenne");
+		}
+
+		if (users.stream().anyMatch(user -> user.getAge() > 900)) {
+			System.out.println("C'è almeno un utente con più di 900 anni");
+		} else {
+			System.out.println("Non ce ne sono");
+		}
+
 
 	}
 }
